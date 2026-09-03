@@ -1,0 +1,6 @@
+{
+  "name": "SAAHAJ",
+  "description": "AI-powered health intelligence platform for patients and clinicians, offering structured medical report extraction, longitudinal timeline, tabular risk screening, and explainable medical imaging.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

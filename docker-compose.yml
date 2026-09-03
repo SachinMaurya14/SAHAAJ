@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  saahaj-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+      - CORS_ORIGINS=http://localhost:3000,http://localhost:5173
+      - GEMINI_API_KEY=${GEMINI_API_KEY:-MY_GEMINI_API_KEY}
+    healthcheck:
+      test: ["CMD", "wget", "--spider", "-q", "http://localhost:3000/health/live"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    restart: unless-stopped
+    networks:
+      - saahaj-net
+
+networks:
+  saahaj-net:
+    driver: bridge

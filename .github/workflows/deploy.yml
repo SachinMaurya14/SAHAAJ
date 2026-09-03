@@ -1,0 +1,31 @@
+name: SAAHAJ Continuous Deployment (CD)
+
+on:
+  push:
+    branches: [ main ]
+    tags: [ 'v*.*.*' ]
+
+jobs:
+  deploy-cloud-run:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v4
+
+    - name: Set up Cloud SDK
+      uses: google-github-actions/setup-gcloud@v2
+      with:
+        project_id: ${{ secrets.GCP_PROJECT_ID }}
+
+    - name: Build Container
+      run: |
+        docker build -t gcr.io/${{ secrets.GCP_PROJECT_ID }}/saahaj:${{ github.sha }} .
+
+    - name: Deploy to Cloud Run
+      run: |
+        gcloud run deploy saahaj-production \
+          --image gcr.io/${{ secrets.GCP_PROJECT_ID }}/saahaj:${{ github.sha }} \
+          --platform managed \
+          --region asia-southeast1 \
+          --allow-unauthenticated \
+          --port 3000
