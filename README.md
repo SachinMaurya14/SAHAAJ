@@ -1,4 +1,4 @@
-# SAAHAJ (सहज) &bull; Clinical Health Intelligence & Longitudinal Archive
+# SAAHAJ ; Clinical Health Intelligence & Longitudinal Archive
 
 > **Production-Grade, Explainable, and Grounded Health Intelligence Platform**
 > *Bridging Patient Understanding and Clinician Decision-Support with Verifiable Provenance*
