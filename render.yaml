@@ -1,0 +1,18 @@
+services:
+  - type: web
+    name: saahaj
+    env: node
+    plan: starter
+    buildCommand: npm ci && npm run build
+    startCommand: npm run start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: STORAGE_SIGNING_SECRET
+        generateValue: true
+      - key: CORS_ORIGINS
+        sync: false
+      - key: RATE_LIMIT_MAX_REQUESTS
+        value: "300"
