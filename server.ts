@@ -19,7 +19,7 @@ import { AssistantQueryEngine } from './server/assistant/assistantQueryEngine';
 dotenv.config();
 
 const app = express();
-const PORT = 3000;
+const PORT = Number(process.env.PORT) || 3000;
 
 // 1. Security & Infrastructure Middleware
 app.use(securityHeadersMiddleware);

@@ -12,7 +12,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [20.x]
+        node-version: [22.x]
 
     steps:
     - name: Checkout Code
@@ -27,13 +27,14 @@ jobs:
     - name: Install Dependencies
       run: npm ci
 
-    - name: Run ESLint
+    - name: Run ESLint & Typecheck
       run: npm run lint
-
-    - name: Compile and Bundle Check
-      run: npm run build
 
     - name: Run System Tests & Medical Integrity Suites
       run: npx tsx server/tests/v10_system_test.ts
       env:
         NODE_ENV: test
+        GEMINI_API_KEY: ""
+
+    - name: Compile and Bundle Check
+      run: npm run build
